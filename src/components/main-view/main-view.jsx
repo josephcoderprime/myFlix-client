@@ -6,11 +6,11 @@ import Col from 'react-bootstrap/Col';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import { RegistrationView } from '../registration/registration';
+import { RegistrationView } from '../registration-view/registration-view';
 
 export class MainView extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             movies: [],
@@ -20,7 +20,7 @@ export class MainView extends React.Component {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios.get('https://flixofficial.herokuapp.com/movies')
             .then(response => {
                 this.setState({
@@ -65,19 +65,19 @@ export class MainView extends React.Component {
 
     render() {
         const { movies, selectedMovie, user, register } = this.state;
-        if (register) return <RegistrationView onRegister={register => this.onRegister(register)} toggleRegister={this.toggleRegister}/>;
+        if (register) return <RegistrationView onRegister={register => this.onRegister(register)} toggleRegister={this.toggleRegister} />;
 
-        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} toggleRegister={this.toggleRegister}/>;
+        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} toggleRegister={this.toggleRegister} />;
 
-        if (movies.length === 0) return <div className='main-view'/>;
-        
+        if (movies.length === 0) return <div className='main-view' />;
+
         return (
             <div className='main-view'>
                 {selectedMovie
                     ? (
                         <Row className='justify-content-md-center'>
                             <Col md={8}>
-                                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {this.setSelectedMovie(newSelectedMovie); }}/>
+                                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                             </Col>
                         </Row>
                     )
@@ -85,7 +85,7 @@ export class MainView extends React.Component {
                         <Row className='justify-content-md-center'>
                             {movies.map((movie, index) => (
                                 <Col md={3} key={index}>
-                                    <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie); }}/>
+                                    <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie); }} />
                                 </Col>
                             ))}
                         </Row>
