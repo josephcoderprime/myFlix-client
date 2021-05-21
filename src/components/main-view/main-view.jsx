@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -95,5 +96,6 @@ export class MainView extends React.Component {
         );
     }
 }
+
 
 export default MainView;
