@@ -48046,7 +48046,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
           onMovieClick = _this$props.onMovieClick;
       return /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
         variant: "top",
-        src: movie.ImagePath
+        src: "/img/".concat(movie.ImagePath)
       }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, movie.Description), /*#__PURE__*/_react.default.createElement(_Button.default, {
         onClick: function onClick() {
           return onMovieClick(movie);
@@ -48141,7 +48141,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-poster"
       }, /*#__PURE__*/_react.default.createElement("img", {
-        src: movie.ImagePath
+        src: "/img/".concat(movie.ImagePath)
       })), /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-title"
       }, /*#__PURE__*/_react.default.createElement("span", {
@@ -48166,7 +48166,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieView = MovieView;
-MovieView.PropTypes = {
+MovieView.propTypes = {
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string.isRequired,
     Description: _propTypes.default.string.isRequired,
@@ -48182,7 +48182,7 @@ MovieView.PropTypes = {
       Death: _propTypes.default.string
     })
   }).isRequired,
-  onClick: _propTypes.default.func.isRequired
+  onBackClick: _propTypes.default.func.isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js"}],"components/registration-view/registration-view.jsx":[function(require,module,exports) {
 "use strict";
@@ -48196,7 +48196,9 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _reactBootstrap = _interopRequireDefault(require("react-bootstrap"));
+var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
+
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48243,40 +48245,48 @@ function RegistrationView(props) {
     props.onRegister(username);
   };
 
-  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "Username:", /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement(_Form.default, null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerUsername"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
-    value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Password:", /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    value: password,
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerPassword"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "password",
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Email:", /*#__PURE__*/_react.default.createElement("input", {
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerEmail"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
-    value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Birthdate:", /*#__PURE__*/_react.default.createElement("input", {
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerBirthdate"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthdate:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
-    value: birthdate,
     onChange: function onChange(e) {
       return setBirthdate(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
+  })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    variant: "primary",
+    type: "submit",
     onClick: handleSubmit
-  }, "Submit"));
+  }, "Submit"), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    variant: "primary",
+    onClick: props.toggleRegister
+  }, "Existing User"));
 }
 
 RegistrationView.Proptypes = {
   onRegister: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48541,7 +48551,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36500" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57041" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
