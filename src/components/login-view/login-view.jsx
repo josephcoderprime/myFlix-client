@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 export function LoginView(props) {
-    const [ username, setUsername ] = useState('');
-    const [ password, setPassword ] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,13 +14,13 @@ export function LoginView(props) {
             Username: username,
             Password: password
         })
-        .then(response => {
-            const data = response.data;
-            props.onLoggedIn(data);
-        })
-        .catch(e => {
-            console.log('no such user')
-        });
+            .then(response => {
+                const data = response.data;
+                props.onLoggedIn(data);
+            })
+            .catch(e => {
+                console.log('no such user')
+            });
     };
 
     return (
@@ -37,7 +38,7 @@ export function LoginView(props) {
             <Button variant='success' type='submit' onClick={handleSubmit}>
                 Submit
             </Button>
-            <Button variant='primary' onClick={props.toggleRegister}>
+            <Button variant='dark' onClick={props.toggleRegister}>
                 New User
             </Button>
         </Form>
@@ -45,6 +46,6 @@ export function LoginView(props) {
 }
 
 LoginView.propTypes = {
-  setUsername: PropTypes.string,
-  setPassword: PropTypes.string
+    setUsername: PropTypes.string,
+    setPassword: PropTypes.string
 };
