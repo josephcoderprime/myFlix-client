@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-import { Form, Button } from 'react-bootstrap';
-
-import './login-view.scss';
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -12,44 +11,32 @@ export function LoginView(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(username, password);
+        /* Send a request to the server for authentication */
+        /* the call props.onLoggedIn(username) */
         props.onLoggedIn(username);
     };
 
     return (
-        <React.Fragment>
-            <Form className='form-login'>
-                <h1 className='text'>Welcome to myFlix!</h1>
-                <p className='mb-5'>Please login to continue.</p>
-                <Form.Group controlId='formBasicEmail'>
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                        type='text'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder='Enter Username'
-                    />
-                </Form.Group>
-                <Form.Group controlId='formBasicPassword'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        type='password'
-                        placeholder='Enter Password'
-                    />
-                </Form.Group>
-                {/*<p>
-          Dont have an account?
-          <Button onClick={handleRegister} variant='link'>
-            Register
-          </Button>
-        </p>*/}
-                <Button onClick={handleSubmit} variant='primary' type='submit'>
-                    Submit
-        </Button>
-            </Form>
-        </React.Fragment>
+        <Form>
+            <h1 className='text'>Welcome to myFlix!</h1>
+            <p className='mb-5'>Please login to continue.</p>
+            <Form.Group controlId='formUsername'>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control type='text' placeholder='Enter Username' onChange={e => setUsername(e.target.value)} />
+            </Form.Group>
+
+            <Form.Group controlId='formPassword'>
+                <Form.Label>Password:</Form.Label>
+                <Form.Control type='password' placeholder='Enter Password' onChange={e => setPassword(e.target.value)} />
+            </Form.Group>
+
+            <Button variant='success' type='submit' onClick={handleSubmit}>
+                Submit
+            </Button>
+            <Button variant='primary' onClick={props.toggleRegister}>
+                New User
+            </Button>
+        </Form>
     );
 }
 
