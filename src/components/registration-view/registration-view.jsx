@@ -43,7 +43,6 @@ export function RegistrationView(props) {
 
     </Form>
   )
-
 }
 
 RegistrationView.Proptypes = {
