@@ -34123,8 +34123,8 @@ function LoginView(props) {
     variant: "success",
     type: "submit",
     onClick: handleSubmit
-  }, "Submit"), /*#__PURE__*/_react.default.createElement(_Button.default, {
-    variant: "primary",
+  }, "Login"), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    variant: "dark",
     onClick: props.toggleRegister
   }, "New User"));
 }
@@ -34376,7 +34376,9 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           movie = _this$props.movie,
           onMovieClick = _this$props.onMovieClick;
-      return /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
+      return /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Header, {
+        as: "h5"
+      }, "Top Hit"), /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
         variant: "top",
         src: movie.ImagePath
       }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, movie.Description), /*#__PURE__*/_react.default.createElement(_Button.default, {
@@ -34598,19 +34600,26 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Text, {
+    className: "text-muted"
+  }, "We'll never share your email with anyone else.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "registerBirthdate"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthdate:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
     onChange: function onChange(e) {
       return setBirthdate(e.target.value);
     }
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicCheckbox"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Check, {
+    type: "checkbox",
+    label: "Check me out"
   })), /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "primary",
     type: "submit",
     onClick: handleSubmit
   }, "Submit"), /*#__PURE__*/_react.default.createElement(_Button.default, {
-    variant: "primary",
+    variant: "secondary",
     onClick: props.toggleRegister
   }, "Existing User"));
 }
