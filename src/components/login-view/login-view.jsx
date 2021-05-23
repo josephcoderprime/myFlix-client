@@ -31,9 +31,9 @@ export function LoginView(props) {
             </Form.Group>
 
             <Button variant='success' type='submit' onClick={handleSubmit}>
-                Submit
+                Login
             </Button>
-            <Button variant='primary' onClick={props.toggleRegister}>
+            <Button variant='dark' onClick={props.toggleRegister}>
                 New User
             </Button>
         </Form>
