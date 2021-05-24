@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from "prop-types";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -14,22 +15,116 @@ export class MainView extends React.Component {
         super();
         this.state = {
             movies: [],
+            UsersDetails: [],
             selectedMovie: null,
             user: null,
-            register: false
+            register: null
         };
     }
 
+    // verify user is logged in in local storage
     componentDidMount() {
-        axios.get('https://flixofficial.herokuapp.com/movies')
-            .then(response => {
-                this.setState({
-                    movies: response.data
-                });
-            })
-            .catch(error => {
-                console.error(error);
+        // Define 'accessToken' as a way to getItem('token') from localStorage
+        let accessToken = localStorage.getItem('token');
+        // If token has a value
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
             });
+            this.getMovies(accessToken);
+            this.getUsersDetails(accessToken);
+        }
+    }
+
+    // .getMovie() takes in token
+    getMovies(token) {
+
+        // Fetch data from the Server side
+        axios
+            .get(
+                'https://flixofficial.herokuapp.com/movies',
+                {
+                    // Specify the headers, set Authorization: Bearer Token
+                    headers: { Authorization: `Bearer ${token}` }
+                })
+
+            // Then, 
+            .then(
+                // take in 'response' data
+                (response) => {
+
+                    // Assign API response to the prop setMovies()
+                    this.props.setMovies(response.data);
+                }
+            )
+
+            // Catch errors
+            .catch(
+                (err) => {
+                    // Log errors in the console
+                    console.log(err);
+                }
+            );
+    }
+
+    getUserInfo(token) {
+
+        axios.get(
+            `https://flixofficial.herokuapp.com/users`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+            .then(
+                (response) => {
+                    this.setState({
+                        userInfo: response.data
+                    })
+                }
+            )
+            .catch(
+                (err) => {
+                    console.log(err);
+                }
+            )
+    }
+
+    // Function: log in, takes in 'authData'
+    onLoggedIn(authData) {
+        this.setState({
+            user: authData.user.Username,
+        });
+        // setItem 'token' and 'user' in the localStorage
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        // Send 'authData.token' to .getMovies()
+        this.getMovies(authData.token);
+        this.getUsers(authData.token);
+    }
+
+    onLoggedIn(user) {
+        this.setState({
+            user
+        });
+    }
+
+    // When user logs out
+    onLoggedOut() {
+
+        this.setState({
+            user: null
+        });
+
+        // Remove token & user from localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+
+        window.open(
+            '/',
+            '_self'
+        );
     }
 
     setSelectedMovie(movie) {
@@ -38,26 +133,10 @@ export class MainView extends React.Component {
         });
     }
 
-    onLoggedIn(authData) {
-        console.log(authData);
-        this.setState({
-            user: authData.user.Username
-        });
-
-        localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.Username);
-        this.getMovies(authData.token);
-    }
 
     onRegister(register) {
         this.setState({
             register
-        });
-    }
-
-    onBackClick() {
-        this.setState({
-            selectedMovie: null
         });
     }
 
@@ -67,6 +146,14 @@ export class MainView extends React.Component {
             register: !this.state.register
         })
     }
+
+    onBackClick() {
+        this.setState({
+            selectedMovie: null
+        });
+    }
+
+
 
     render() {
         const { movies, selectedMovie, user, register } = this.state;
@@ -101,4 +188,15 @@ export class MainView extends React.Component {
     }
 }
 
-export default MainView;
+MainView.propTypes = {
+    movies: PropTypes.shape({
+        Title: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired
+    }),
+    selectedMovie: PropTypes.shape({
+        Title: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired
+    })
+}
