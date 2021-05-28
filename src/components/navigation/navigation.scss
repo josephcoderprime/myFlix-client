@@ -1,0 +1,13 @@
+  
+$main: #DD042C;
+
+.navbar{
+  background-color: $main;
+  .dropdown{
+    position: relative;
+    .dropdown-menu{
+      position: absolute;
+      right: 1000px;
+    }
+  }
+}
