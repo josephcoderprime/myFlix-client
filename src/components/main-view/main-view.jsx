@@ -73,7 +73,7 @@ export class MainView extends React.Component {
             user: null,
         });
         console.log("logout successful");
-        alert("You have logout successfully")
+        alert("You have logout successfully!")
     }
 
     render() {

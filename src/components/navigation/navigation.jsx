@@ -21,9 +21,9 @@ export class Navigation extends React.Component {
   }
 
   getUser(token) {
-    let username = localStorage.getItem('user')
+    let Username = localStorage.getItem('user')
     axios
-      .get(`https://flixofficial.herokuapp.com/users/${username}`, {
+      .get(`https://flixofficial.herokuapp.com/users/${Username}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
