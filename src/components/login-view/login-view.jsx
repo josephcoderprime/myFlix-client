@@ -20,6 +20,7 @@ export function LoginView(props) {
         console.log(username, password);
         const isValid = formValidation();
         if (isValid) {
+            /* Send a request to the server for authentication */
             axios.post('https://flixofficial.herokuapp.com/login', {
                 Username: username,
                 Password: password
