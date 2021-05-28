@@ -51491,9 +51491,9 @@ var Navigation = /*#__PURE__*/function (_React$Component) {
     value: function getUser(token) {
       var _this2 = this;
 
-      var username = localStorage.getItem('user');
+      var Username = localStorage.getItem('user');
 
-      _axios.default.get("https://flixofficial.herokuapp.com/users/".concat(username), {
+      _axios.default.get("https://flixofficial.herokuapp.com/users/".concat(Username), {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -52454,7 +52454,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         user: null
       });
       console.log("logout successful");
-      alert("You have logout successfully");
+      alert("You have logout successfully!");
     }
   }, {
     key: "render",
@@ -52739,7 +52739,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13283" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "14526" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
