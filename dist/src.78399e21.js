@@ -37199,6 +37199,7 @@ function LoginView(props) {
     var isValid = formValidation();
 
     if (isValid) {
+      /* Send a request to the server for authentication */
       _axios.default.post('https://flixofficial.herokuapp.com/login', {
         Username: username,
         Password: password
@@ -37376,9 +37377,10 @@ function RegistrationView(props) {
       }).then(function (response) {
         var data = response.data;
         console.log(data);
+        window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
       }).catch(function (e) {
         console.log('error in registering the user');
-        alert('Error');
+        alert('Error, please try again');
       });
     }
   };
@@ -37463,12 +37465,7 @@ function RegistrationView(props) {
     variant: "primary",
     type: "submit",
     onClick: handleRegister
-  }, "Register"), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicCheckbox"
-  }, /*#__PURE__*/_react.default.createElement(_Form.default.Check, {
-    type: "checkbox",
-    label: "Remember me"
-  })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Register"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "outline-primary"
@@ -52542,7 +52539,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< Updated upstream
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "7484" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13515" + '/');
+>>>>>>> Stashed changes
 
   ws.onmessage = function (event) {
     checkedAssets = {};
