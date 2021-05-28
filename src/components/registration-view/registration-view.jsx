@@ -31,9 +31,10 @@ export function RegistrationView(props) {
       }).then(response => {
         const data = response.data;
         console.log(data);
+        window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
       }).catch(e => {
         console.log('error in registering the user')
-        alert('Error')
+        alert('Error, please try again')
       });
     }
   }
@@ -110,9 +111,6 @@ export function RegistrationView(props) {
       </Form.Group>
 
       <Button variant="primary" type="submit" onClick={handleRegister}>Register</Button>
-      <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Remember me" />
-      </Form.Group>
       <Link to={`/`}>
         <Button variant="outline-primary">Already Registered? Log In</Button>
       </Link>
