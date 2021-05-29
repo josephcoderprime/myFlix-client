@@ -24,7 +24,7 @@ export class MovieView extends React.Component {
 
     axios
       .post(
-        `https://flixofficial.herokuapp.com//users/${username}/Movies/${movie}`,
+        `https://flixofficial.herokuapp.com/${username}/Movies/${movie}`,
         {
           FavoriteMovies: this.FavoriteMovies
         },
