@@ -51635,10 +51635,10 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     value: function addToFavoriteMovies(movie) {
       var _this2 = this;
 
-      var users = localStorage.getItem('user');
+      var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
 
-      _axios.default.post("https://flixofficial.herokuapp.com/".concat(users, "/Movies/").concat(movie), {
+      _axios.default.post("https://flixofficial.herokuapp.com/".concat(username, "/Movies/").concat(movie), {
         FavoriteMovies: this.FavoriteMovies
       }, {
         headers: {
