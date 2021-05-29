@@ -8,7 +8,7 @@ export class Navigation extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      Username: null
+      username: null
     }
   }
 
@@ -21,9 +21,9 @@ export class Navigation extends React.Component {
   }
 
   getUser(token) {
-    let Username = localStorage.getItem('user')
+    let username = localStorage.getItem('user')
     axios
-      .get(`https://flixofficial.herokuapp.com/users/${Username}`, {
+      .get(`https://flixofficial.herokuapp.com/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
@@ -54,7 +54,7 @@ export class Navigation extends React.Component {
   }
 
   render() {
-    const { Username } = this.state
+    const { users, Username } = this.state
     return (
       <Navbar
         collapseOnSelect
@@ -69,7 +69,8 @@ export class Navigation extends React.Component {
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
             <NavDropdown title='Account' id='basic-nav-dropdown'>
-              <NavDropdown.Item as={Link} to={`/users/{user}`}>
+              <NavDropdown.Item as={Link} to={`/users/{users}`}>
+                {Username}
                 Profile
               </NavDropdown.Item>
               <NavDropdown.Divider />
