@@ -51471,7 +51471,7 @@ var Navigation = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      Username: null
+      username: null
     };
     return _this;
   }
@@ -51491,9 +51491,9 @@ var Navigation = /*#__PURE__*/function (_React$Component) {
     value: function getUser(token) {
       var _this2 = this;
 
-      var Username = localStorage.getItem('user');
+      var username = localStorage.getItem('user');
 
-      _axios.default.get("https://flixofficial.herokuapp.com/users/".concat(Username), {
+      _axios.default.get("https://flixofficial.herokuapp.com/users/".concat(username), {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -51529,7 +51529,9 @@ var Navigation = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var Username = this.state.Username;
+      var _this$state = this.state,
+          users = _this$state.users,
+          Username = _this$state.Username;
       return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
         collapseOnSelect: true,
         expand: "lg",
@@ -51550,8 +51552,8 @@ var Navigation = /*#__PURE__*/function (_React$Component) {
         id: "basic-nav-dropdown"
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.NavDropdown.Item, {
         as: _reactRouterDom.Link,
-        to: "/users/{user}"
-      }, "Profile"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.NavDropdown.Divider, null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.NavDropdown.Item, {
+        to: "/users/{users}"
+      }, Username, "Profile"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.NavDropdown.Divider, null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.NavDropdown.Item, {
         className: "log-out",
         onClick: function onClick() {
           return _this3.onLoggedOut();
@@ -51633,10 +51635,10 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     value: function addToFavoriteMovies(movie) {
       var _this2 = this;
 
-      var username = localStorage.getItem('user');
+      var users = localStorage.getItem('user');
       var token = localStorage.getItem('token');
 
-      _axios.default.post("https://flixofficial.herokuapp.com//users/".concat(username, "/Movies/").concat(movie), {
+      _axios.default.post("https://flixofficial.herokuapp.com/".concat(users, "/Movies/").concat(movie), {
         FavoriteMovies: this.FavoriteMovies
       }, {
         headers: {
@@ -52739,7 +52741,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "17519" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "21472" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
