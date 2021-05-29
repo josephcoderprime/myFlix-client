@@ -51529,9 +51529,7 @@ var Navigation = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var _this$state = this.state,
-          users = _this$state.users,
-          Username = _this$state.Username;
+      var Username = this.state.Username;
       return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
         collapseOnSelect: true,
         expand: "lg",
