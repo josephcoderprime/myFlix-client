@@ -70,8 +70,8 @@ export class ProfileView extends React.Component {
 
   render() {
     const { movies, onBackClick } = this.props;
-    const favoriteMovieList = movies.filter((movie) => {
-      return this.state.favoriteMovies.includes(movie._id);
+    const favoriteMovieList = movies.filter((movies) => {
+      return this.state.favoriteMovies.includes(movies._id);
     });
     return (
       <div>
@@ -91,19 +91,23 @@ export class ProfileView extends React.Component {
           <Link to={`/update/${this.state.username}`}>
             <Button>Edit Profile</Button>
           </Link>
+          <br />
           <Button variant="warning" onClick={() => { this.handleDelete() }}>Delete Profile</Button>
+          <br />
+          <Card.Subtitle className="text-danger">Warning: After deleting the account, you won't be able to recover it</Card.Subtitle>
           <Button variant="secondary" onClick={() => { onBackClick() }}>Back</Button>
+          <br />
         </Form>
         <div>
           <h5>Favorite Movies:</h5>
-          {favoriteMovieList.map((movie) => {
+          {favoriteMovieList.map((movies) => {
             return (
               <Col md={3} key={movie._id}>
                 <Card>
-                  <Card.Img variant="top" src={movie.ImagePath} />
+                  <Card.Img variant="top" src={movies.ImagePath} />
                   <Card.Body>
-                    <Link to={`/movies/${movie._id}`}>
-                      <Card.Title>{movie.Title}</Card.Title>
+                    <Link to={`/movies/${movies._id}`}>
+                      <Card.Title>{movies.Title}</Card.Title>
                     </Link>
                   </Card.Body>
                 </Card>
@@ -118,3 +122,4 @@ export class ProfileView extends React.Component {
     )
   }
 }
+
