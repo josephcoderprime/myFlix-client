@@ -94,7 +94,7 @@ export class ProfileView extends React.Component {
           <br />
           <Button variant="warning" onClick={() => { this.handleDelete() }}>Delete Profile</Button>
           <br />
-          <Card.Subtitle className="text-danger">Warning: After deleting the account, you won't be able to recover it</Card.Subtitle>
+          <Card.Subtitle className="text-danger">Warning: After deleting the account, you won't be able to recover it!</Card.Subtitle>
           <Button variant="secondary" onClick={() => { onBackClick() }}>Back</Button>
           <br />
         </Form>
