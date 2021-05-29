@@ -51630,13 +51630,13 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 
   _createClass(MovieView, [{
     key: "addToFavoriteMovies",
-    value: function addToFavoriteMovies(movie) {
+    value: function addToFavoriteMovies(movies) {
       var _this2 = this;
 
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
 
-      _axios.default.post("https://flixofficial.herokuapp.com/".concat(username, "/Movies/").concat(movie), {
+      _axios.default.post("https://flixofficial.herokuapp.com/users/".concat(username, "/movies/").concat(movies), {
         FavoriteMovies: this.FavoriteMovies
       }, {
         headers: {
@@ -52076,8 +52076,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           movies = _this$props.movies,
           onBackClick = _this$props.onBackClick;
-      var favoriteMovieList = movies.filter(function (movie) {
-        return _this3.state.favoriteMovies.includes(movie._id);
+      var favoriteMovieList = movies.filter(function (movies) {
+        return _this3.state.favoriteMovies.includes(movies._id);
       });
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Form.default, null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
         controlId: "formBasicUsername"
@@ -52087,26 +52087,28 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         controlId: "formBasicDate"
       }, /*#__PURE__*/_react.default.createElement("h6", null, "Date of Birth:"), /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, this.state.birthday)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: "/update/".concat(this.state.username)
-      }, /*#__PURE__*/_react.default.createElement(_Button.default, null, "Edit Profile")), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      }, /*#__PURE__*/_react.default.createElement(_Button.default, null, "Edit Profile")), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "warning",
         onClick: function onClick() {
           _this3.handleDelete();
         }
-      }, "Delete Profile"), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      }, "Delete Profile"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_Card.default.Subtitle, {
+        className: "text-danger"
+      }, "Warning: After deleting the account, you won't be able to recover it"), /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "secondary",
         onClick: function onClick() {
           onBackClick();
         }
-      }, "Back")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h5", null, "Favorite Movies:"), favoriteMovieList.map(function (movie) {
+      }, "Back"), /*#__PURE__*/_react.default.createElement("br", null)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h5", null, "Favorite Movies:"), favoriteMovieList.map(function (movies) {
         return /*#__PURE__*/_react.default.createElement(_Col.default, {
           md: 3,
           key: movie._id
         }, /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
           variant: "top",
-          src: movie.ImagePath
+          src: movies.ImagePath
         }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-          to: "/movies/".concat(movie._id)
-        }, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title)))), /*#__PURE__*/_react.default.createElement(_Button.default, {
+          to: "/movies/".concat(movies._id)
+        }, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movies.Title)))), /*#__PURE__*/_react.default.createElement(_Button.default, {
           onClick: function onClick() {
             return _this3.removeFavorite(movie);
           }
