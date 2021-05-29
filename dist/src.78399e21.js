@@ -52094,7 +52094,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }, "Delete Profile"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_Card.default.Subtitle, {
         className: "text-danger"
-      }, "Warning: After deleting the account, you won't be able to recover it"), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      }, "Warning: After deleting the account, you won't be able to recover it!"), /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "secondary",
         onClick: function onClick() {
           onBackClick();
