@@ -23,7 +23,7 @@ export class ShortNav extends React.Component {
   getUser(token) {
     let username = localStorage.getItem('user')
     axios
-      .get(`https://flixofficial.herokuapp.com/users/${username}`, {
+      .get(`https://flixofficial.herokuapp.com/users`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
