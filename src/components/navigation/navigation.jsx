@@ -54,7 +54,7 @@ export class Navigation extends React.Component {
   }
 
   render() {
-    const { users, Username } = this.state
+    const { Username } = this.state
     return (
       <Navbar
         collapseOnSelect
