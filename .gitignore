@@ -1,2 +1,4 @@
 node_modules
 .cache
+.parcel-cache/ae/642187e4511ae224cca81153cfb915.blob
+*.blob
