@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { setMovies, setUser } from '../../actions/actions'
+import { setMovies } from '../../actions/actions'
 import { Link } from 'react-router-dom';
 
 import Row from 'react-bootstrap/Row';
