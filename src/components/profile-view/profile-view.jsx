@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 
+import Config from '../../config'
+
 export class ProfileView extends React.Component {
 
   constructor() {
@@ -33,9 +35,10 @@ export class ProfileView extends React.Component {
   }
 
   removeFavorite(movie) {
+    let username = localStorage.getItem('user');
     let token = localStorage.getItem("token");
     let url =
-      "https://flixofficial.herokuapp.com/users/" +
+      `${Config.API_URL}/users/${username}` +
       localStorage.getItem("user") + "/favourites/" +
       movie._id;
     axios
@@ -55,7 +58,7 @@ export class ProfileView extends React.Component {
     let user = localStorage.getItem("user");
     axios
       .delete(
-        `https://flixofficial.herokuapp.com/users/${user}`, { headers: { Authorization: `Bearer ${token}` } }
+        `${Config.API_URL}/users//${user}`, { headers: { Authorization: `Bearer ${token}` } }
       )
       .then(() => {
         alert(user + " has been deleted");
