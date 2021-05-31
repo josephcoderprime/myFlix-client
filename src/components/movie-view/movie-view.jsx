@@ -7,7 +7,6 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './movie-view.scss'
 
-import { Navigation } from '../Navigation/navigation'
 
 export class MovieView extends React.Component {
   constructor() {
