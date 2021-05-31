@@ -547,7 +547,7 @@
     "xtend": "^4.0.2"
   },
   "scripts": {
-    "start": "parcel src/index.html"
+    "main": "src/index.html"
   },
   "repository": {
     "type": "git",
