@@ -4,6 +4,7 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import Config from '../../config';
 
 
 import "./login-view.scss";
@@ -20,7 +21,7 @@ export function LoginView(props) {
         console.log(username, password);
         const isValid = formValidation();
         if (isValid) {
-            axios.post('https://flixofficial.herokuapp.com/login', {
+            axios.post(`${Config.API_URL}/login`, {
                 Username: username,
                 Password: password
             }).then(response => {
@@ -79,7 +80,9 @@ export function LoginView(props) {
                         </div>
                     );
                 })}
-
+                <Form.Group controlId="formBasicCheckbox">
+                    <Form.Check type="checkbox" label="Remember me" />
+                </Form.Group>
                 <Button variant="success" type="submit" onClick={handleSubmit}>Login</Button>
                 <Link to={`/register`}>
                     <Button variant="outline-primary" >Not Registered? Register</Button>
