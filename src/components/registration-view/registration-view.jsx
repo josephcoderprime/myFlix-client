@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Config from '../../config';
 
 import "./registration-view.scss";
 
@@ -23,7 +24,7 @@ export function RegistrationView(props) {
     console.log(username, password, email, birthday);
     const isValid = formValidation();
     if (isValid) {
-      axios.post('https://flixofficial.herokuapp.com/users', {
+      axios.post(`${Config.API_URL}/users`, {
         Username: username,
         Password: password,
         Email: email,
@@ -31,6 +32,7 @@ export function RegistrationView(props) {
       }).then(response => {
         const data = response.data;
         console.log(data);
+        alert('You may now log in');
       }).catch(e => {
         console.log('error in registering the user')
         alert('Error')
@@ -110,9 +112,6 @@ export function RegistrationView(props) {
       </Form.Group>
 
       <Button variant="primary" type="submit" onClick={handleRegister}>Register</Button>
-      <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Remember me" />
-      </Form.Group>
       <Link to={`/`}>
         <Button variant="outline-primary">Already Registered? Log In</Button>
       </Link>
