@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Button, Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './navigation.scss'
+import Config from '../../config'
 
 export class ShortNav extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ export class ShortNav extends React.Component {
   getUser(token) {
     let username = localStorage.getItem('user')
     axios
-      .get(`https://flixofficial.herokuapp.com/users/${username}/Movies/${movie}`, {
+      .get(`${Config.API_URL}/users/${username}/Movies/${movie}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
