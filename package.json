@@ -414,6 +414,8 @@
     "react-router-dom": "^5.2.0",
     "readable-stream": "^2.3.7",
     "readdirp": "^2.2.1",
+    "redux": "^4.1.0",
+    "redux-devtools-extension": "^2.13.9",
     "regenerate": "^1.4.2",
     "regenerate-unicode-properties": "^8.2.0",
     "regenerator-runtime": "^0.13.7",
