@@ -1,4 +1,5 @@
 
+import Config from '../../config.js';
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -14,17 +15,16 @@ export class MovieView extends React.Component {
 
     this.state = {
       movies: [],
-      favoriteMovies: []
+      FavoriteMovies: []
     }
   }
 
-  addToFavoriteMovies(movies) {
+  addToFavoriteMovies(movie) {
     const username = localStorage.getItem('user')
     const token = localStorage.getItem('token')
 
     axios
-      .post(
-        `https://flixofficial.herokuapp.com/users/${username}/movies/${movies}`,
+      .post(`${Config.API_URL}/users/${username}/movies/${movie}`,
         {
           FavoriteMovies: this.FavoriteMovies
         },
