@@ -1,3 +1,26 @@
+import React from 'react';
+import axios from 'axios';
+
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { setMovies, setUser } from '../../actions/actions'
+import { Link } from 'react-router-dom';
+
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+
+import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view'
+import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view';
+import { ProfileUpdate } from '../profile-update/profile-update';
+import MoviesList from '../movies-list/movies-list';
+import Config from '../../config';
+
+import './main-view.scss';
 
 
 export class MainView extends React.Component {
