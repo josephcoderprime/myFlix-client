@@ -1,0 +1,368 @@
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MainView", ()=>MainView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _reactRedux = require("react-redux");
+var _reactRouterDom = require("react-router-dom");
+var _actions = require("../../actions/actions");
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _loginView = require("../login-view/login-view");
+var _registrationView = require("../registration-view/registration-view");
+var _movieView = require("../movie-view/movie-view");
+var _directorView = require("../director-view/director-view");
+var _genreView = require("../genre-view/genre-view");
+var _profileView = require("../profile-view/profile-view");
+var _profileUpdate = require("../profile-update/profile-update");
+var _moviesList = require("../movies-list/movies-list");
+var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
+var _config = require("../../config");
+var _configDefault = parcelHelpers.interopDefault(_config);
+var _mainViewScss = require("./main-view.scss");
+class MainView extends _reactDefault.default.Component {
+    constructor(){
+        super();
+        //Initial state is set to null
+        this.state = {
+            movies: [],
+            user: null,
+            token: null
+        };
+    }
+    // One of the hooks available in a React Component
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getMovies(accessToken);
+        }
+    }
+    getMovies(token) {
+        _axiosDefault.default.get(`${_configDefault.default.API_URL}/movies`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            this.props.setMovies(response.data);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+    /* When a user successfully logs in, this function updates the `user` for
+    entry in state to the *particular user*/ onLoggedIn(authData) {
+        console.log(authData);
+        this.setState({
+            user: authData.user.Username
+        });
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        localStorage.setItem('email', authData.user.Email);
+        localStorage.setItem('birthday', authData.user.Birthday);
+        localStorage.setItem('favoriteMovies', authData.user.FavoriteMovies);
+        this.getMovies(authData.token);
+    }
+    logOut() {
+        localStorage.clear();
+        this.setState({
+            user: null
+        });
+        console.log("logout successful");
+        alert("You have logout successfully");
+    }
+    render() {
+        let { movies  } = this.props;
+        // If the state isn't initialized, this will throw on runtime
+        // before the data is initially loaded
+        const { user , users  } = this.state;
+        const storedUser = localStorage.getItem('user');
+        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 97
+            },
+            __self: this
+        }, this.state.user ? /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "navbar",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 100
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(Navbar, {
+            fixed: "top",
+            collapseOnSelect: true,
+            expand: "lg",
+            bg: "dark",
+            variant: "dark",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 101
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(Navbar.Brand, {
+            href: "/",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 102
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 103
+            },
+            __self: this
+        }, "MyFlix")), /*#__PURE__*/ _reactDefault.default.createElement(Navbar.Toggle, {
+            "aria-controls": "responsive-navbar-nav",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 105
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(Navbar.Collapse, {
+            id: "responsive-navbar-nav",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 106
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(Nav, {
+            className: "mr-auto",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 107
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(Nav.Link, {
+            href: "/",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 108
+            },
+            __self: this
+        }, "Movies"), /*#__PURE__*/ _reactDefault.default.createElement(Nav.Link, {
+            href: `/profile/${user}`,
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 109
+            },
+            __self: this
+        }, "Account"), /*#__PURE__*/ _reactDefault.default.createElement(Nav.Link, {
+            onClick: (user1)=>this.logoutUser()
+            ,
+            href: "http://localhost:1234/",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 110
+            },
+            __self: this
+        }, "Logout"))))) : /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "navbar",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 118
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(Navbar, {
+            fixed: "top",
+            collapseOnSelect: true,
+            expand: "lg",
+            bg: "dark",
+            variant: "dark",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 119
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(Navbar.Brand, {
+            href: "/",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 120
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 121
+            },
+            __self: this
+        }, "MyFlix")))), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
+            basename: "/client",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 127
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "main-view",
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 128
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            exact: true,
+            path: "/",
+            render: ()=>{
+                if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(Container, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user1)=>this.onLoggedIn(user1)
+                })));
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
+                    movies: movies
+                }));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 129
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/register",
+            render: ()=>{
+                if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(Container, null, /*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, null)));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 137
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/profile/:username",
+            render: ({ match  })=>{
+                // Users can only see their own account info!
+                if (match.params.username === storedUser) return(/*#__PURE__*/ _reactDefault.default.createElement(_profileView.ProfileView, {
+                    user: users.find((m)=>m.Username === match.params.username
+                    )
+                }));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 146
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/profile/:username/update",
+            render: ({ match  })=>{
+                // Users can only see their own account info!
+                if (match.params.username === storedUser) return(/*#__PURE__*/ _reactDefault.default.createElement(ChangeProfile, {
+                    user: users.find((m)=>m.Username === match.params.username
+                    )
+                }));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 154
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/profile/:username/delete",
+            render: ({ match  })=>{
+                // Users can only see their own account info!
+                if (match.params.username === storedUser) return(/*#__PURE__*/ _reactDefault.default.createElement(DeleteProfile, {
+                    user: users.find((m)=>m.Username === match.params.username
+                    ),
+                    onDelete: (user1)=>this.logoutUser()
+                }));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 162
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/profile/:username/favorites",
+            render: ({ match  })=>{
+                // Users can only see their own account info!
+                if (match.params.username === storedUser) return(/*#__PURE__*/ _reactDefault.default.createElement(ChangeFavorites, {
+                    user: users.find((m)=>m.Username === match.params.username
+                    )
+                }));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 172
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/movies/:movieId",
+            render: ({ match  })=>/*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
+                    addToFav: ()=>this.addToFav(user)
+                    ,
+                    movie: movies.find((m)=>m._id === match.params.movieId
+                    ),
+                    user: users.find((m)=>m.Username === storedUser
+                    ),
+                    token: localStorage.getItem('token')
+                })
+            ,
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 181
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/genres/:name",
+            render: ({ match  })=>{
+                if (!movies) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+                    className: "main-view"
+                }));
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_genreView.GenreView, {
+                    genre: movies.find((m)=>m.Genre.Name === match.params.name
+                    ).Genre
+                }));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 189
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/directors/:name",
+            render: ({ match  })=>{
+                if (!movies) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+                    className: "main-view"
+                }));
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_directorView.DirectorView, {
+                    director: movies.find((m)=>m.Director.Name === match.params.name
+                    ).Director
+                }));
+            },
+            __source: {
+                fileName: "C:\\Users\\Beppe\\Documents\\careerfoundry\\myFlix-client\\src\\components\\main-view\\main-view.jsx",
+                lineNumber: 197
+            },
+            __self: this
+        })))));
+    }
+}
+let mapStateToProps = (state)=>{
+    return {
+        movies: state.movies
+    };
+};
+exports.default = _reactRedux.connect(mapStateToProps, {
+    setMovies: _actions.setMovies
+})(MainView);
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

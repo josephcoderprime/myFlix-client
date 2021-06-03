@@ -4,8 +4,9 @@
   "description": "* [Achievement 3 Project](Achievement-3-Project)\r * [Technologies](Technologies)\r * [Objective](Objective)\r * [Direction](Direction)\r * [Exercises](Exercises)\r * [Key Features](Key-Features)",
   "main": "src/index.html",
   "scripts": {
+    "dev": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html"
+    "main": "parcel index.html"
   },
   "repository": {
     "type": "git",
