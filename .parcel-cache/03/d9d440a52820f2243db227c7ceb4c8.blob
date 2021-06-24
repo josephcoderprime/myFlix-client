@@ -1,0 +1,28 @@
+
+
+.card-container {
+  width: 25rem;
+  display: inline-flex;
+  margin: 5rem auto;
+  align-items: stretch;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-grow: 0;
+  border-radius: 2rem 2rem 0 0;
+}
+.navbar {
+  background-color: #DD042C;
+}
+.navbar .dropdown {
+  position: relative;
+}
+.navbar .dropdown .dropdown-menu {
+  position: absolute;
+  right: 1000px;
+}
+
+
+.my-flix {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.HASH_REF_3b94b1a2665cef1c5db0f7a3ef29e391.css.map */
